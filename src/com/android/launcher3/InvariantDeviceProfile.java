@@ -98,6 +98,7 @@ public class InvariantDeviceProfile {
      */
     public int numFolderRows;
     public int numFolderColumns;
+    public String iconPack;
     public float iconSize;
     public String iconShapePath;
     public float landscapeIconSize;
@@ -140,6 +141,7 @@ public class InvariantDeviceProfile {
         numColumns = p.numColumns;
         numFolderRows = p.numFolderRows;
         numFolderColumns = p.numFolderColumns;
+        iconPack = p.iconPack;
         iconSize = p.iconSize;
         iconShapePath = p.iconShapePath;
         landscapeIconSize = p.landscapeIconSize;
@@ -293,6 +295,7 @@ public class InvariantDeviceProfile {
 
         mExtraAttrs = closestProfile.extraAttrs;
 
+        iconPack = IconPackProvider.getCurrentIconPack(context);
         iconSize = displayOption.iconSize;
         iconShapePath = getIconShapePath(context);
         landscapeIconSize = displayOption.landscapeIconSize;
@@ -363,7 +366,7 @@ public class InvariantDeviceProfile {
         }
 
         if (iconSize != oldProfile.iconSize || iconBitmapSize != oldProfile.iconBitmapSize ||
-                !iconShapePath.equals(oldProfile.iconShapePath)) {
+                !iconShapePath.equals(oldProfile.iconShapePath) || !iconPack.equals(oldProfile.iconPack)) {
             changeFlags |= CHANGE_FLAG_ICON_PARAMS;
         }
         if (!iconShapePath.equals(oldProfile.iconShapePath)) {
